@@ -183,8 +183,8 @@ let seattleBranch = {
 
    }
 }
-   limaBranch.hourlyDailySales();
-   limaBranch.render();
+   parisBranch.hourlyDailySales();
+   parisBranch.render();
 
    let limaBranch = {
     location: 'Lima Branch',
