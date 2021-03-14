@@ -1,332 +1,180 @@
-"use strict"
- 
-let time=["6am " ,'7am ','8am','9am','10am','11am','12pm ','1pm ','2pm ','3pm ','4pm ','5pm ','6pm ','7pm '];
+'use strict';
 
+let time = ['6:00 am', '7:00 am', '8:00 am', '9:00 am', '10:00 am', '11:00 am', '12:00 pm', '1:00 pm', '2:00 pm', '3:00 pm', '4:00 pm', '5:00 pm', '6:00 pm', '7:00 pm'];
 
-let seattleBranch = {
-    location: 'Seattle Branch',
-    min: 23,
-    max: 65,
-    avgCookieSale: 6.3,
-    hourlySales:[],
-    dailySales:0,
+let branchLocations = [];
 
-   randomCust :function () {
-        let range=this.max-this.min;
-         let randomCount=Math.random() * range+this.min;
-         return Math.ceil(randomCount);
-      },
+let salesTable = document.getElementById('salesTable2');
 
-    hourlyDailySales :function () {
-        for (let i=0;i<time.length;i++){
-            let numOfCookies= Math.ceil(this.randomCust()*this.avgCookieSale);
-            this.hourlySales.push(numOfCookies);
-            this.dailySales += numOfCookies;
-        }
-        },
-       
-   render :function(){
-       let container=document.getElementById('content-area');
-       let h2 =document.createElement('h2');
-       container.appendChild(h2);
-       h2.textContent=this.location;
-       container.appendChild(h2);
-       let list=document.createElement('ul');
-       container.appendChild(list);
-       for (let i=0;i<time.length;i++){
-        let listItem = document.createElement('li');
-        listItem.textContent  =time[i]+': '+this.hourlySales[i]+' cookies';
-        list.appendChild(listItem);
-       }
-       let listItem = document.createElement('li');
-        listItem.textContent  ='Total: '+this.dailySales+' cookies';
-        list.appendChild(listItem);
+//Branchs constructor
+function Branchs(name, minCustomers, maxCustomers, avgCookies) {
+  
+  this.name = name;
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgCookies = avgCookies;
 
+  this.averageCustomersPerHour = [];
+  this.averageCookiesPerHour = [];
+  this.totalCookiesPerDay = 0;
+  this.numOfCustomersPerHour();
+  this.cookiesPerCustomer();
 
-   },
+  branchLocations.push(this);
 }
 
-
-    seattleBranch.hourlyDailySales();
-    seattleBranch.render();
-
-
-   let tokyoBranch = {
-    location: 'Tokyo Branch',
-    min: 3,
-    max: 24,
-    avgCookieSale: 1.2,
-    hourlySales:[],
-    dailySales:0,
-
-   randomCust :function () {
-        let range=this.max-this.min;
-         let randomCount=Math.random() * range+this.min;
-         return Math.ceil(randomCount);
-      },
-
-    hourlyDailySales :function () {
-        for (let i=0;i<time.length;i++){
-            let numOfCookies= Math.ceil(this.randomCust()*this.avgCookieSale);
-            this.hourlySales.push(numOfCookies);
-            this.dailySales += numOfCookies;
-        }
-        },
-       
-   render :function(){
-       let container=document.getElementById('content-area');
-       let h2 =document.createElement('h2');
-       container.appendChild(h2);
-       h2.textContent=this.location;
-       container.appendChild(h2);
-       let list=document.createElement('ul');
-       container.appendChild(list);
-       for (let i=0;i<time.length;i++){
-        let listItem = document.createElement('li');
-        listItem.textContent  =time[i]+': '+this.hourlySales[i]+' cookies';
-        list.appendChild(listItem);
-       }
-       let listItem = document.createElement('li');
-        listItem.textContent  ='Total: '+this.dailySales+' cookies';
-        list.appendChild(listItem);
-
-
-   },
-}
-   tokyoBranch.hourlyDailySales();
-   tokyoBranch.render();
-
-   let dubaiBranch = {
-    location: 'Dubai Branch',
-    min: 11,
-    max: 38,
-    avgCookieSale:  3.7,
-    hourlySales:[],
-    dailySales:0,
-
-   randomCust :function () {
-        let range=this.max-this.min;
-         let randomCount=Math.random() * range+this.min;
-         return Math.ceil(randomCount);
-      },
-
-    hourlyDailySales :function () {
-        for (let i=0;i<time.length;i++){
-            let numOfCookies= Math.ceil(this.randomCust()*this.avgCookieSale);
-            this.hourlySales.push(numOfCookies);
-            this.dailySales += numOfCookies;
-        }
-        },
-       
-   render :function(){
-       let container=document.getElementById('content-area');
-       let h2 =document.createElement('h2');
-       container.appendChild(h2);
-       h2.textContent=this.location;
-       container.appendChild(h2);
-       let list=document.createElement('ul');
-       container.appendChild(list);
-       for (let i=0;i<time.length;i++){
-        let listItem = document.createElement('li');
-        listItem.textContent  =time[i]+': '+this.hourlySales[i]+' cookies';
-        list.appendChild(listItem);
-       }
-       let listItem = document.createElement('li');
-        listItem.textContent  ='Total: '+this.dailySales+' cookies';
-        list.appendChild(listItem);
-
-
-   }
-}
-   dubaiBranch.hourlyDailySales();
-   dubaiBranch.render();
-
-
-   let parisBranch = {
-    location: 'Paris Branch',
-    min: 20,
-    max: 38,
-    avgCookieSale:  3.7,
-    hourlySales:[],
-    dailySales:0,
-
-   randomCust :function () {
-        let range=this.max-this.min;
-         let randomCount=Math.random() * range+this.min;
-         return Math.ceil(randomCount);
-      },
-
-    hourlyDailySales :function () {
-        for (let i=0;i<time.length;i++){
-            let numOfCookies= Math.ceil(this.randomCust()*this.avgCookieSale);
-            this.hourlySales.push(numOfCookies);
-            this.dailySales += numOfCookies;
-        }
-        },
-       
-   render :function(){
-       let container=document.getElementById('content-area');
-       let h2 =document.createElement('h2');
-       container.appendChild(h2);
-       h2.textContent=this.location;
-       container.appendChild(h2);
-       let list=document.createElement('ul');
-       container.appendChild(list);
-       for (let i=0;i<time.length;i++){
-        let listItem = document.createElement('li');
-        listItem.textContent  =time[i]+': '+this.hourlySales[i]+' cookies';
-        list.appendChild(listItem);
-       }
-       let listItem = document.createElement('li');
-        listItem.textContent  ='Total: '+this.dailySales+' cookies';
-        list.appendChild(listItem);
-
-
-   }
-}
-   parisBranch.hourlyDailySales();
-   parisBranch.render();
-
-   let limaBranch = {
-    location: 'Lima Branch',
-    min: 2,
-    max: 16,
-    avgCookieSale: 4.6,
-    hourlySales:[],
-    dailySales:0,
-
-   randomCust :function () {
-        let range=this.max-this.min;
-         let randomCount=Math.random() * range+this.min;
-         return Math.ceil(randomCount);
-      },
-
-    hourlyDailySales :function () {
-        for (let i=0;i<time.length;i++){
-            let numOfCookies= Math.ceil(this.randomCust()*this.avgCookieSale);
-            this.hourlySales.push(numOfCookies);
-            this.dailySales += numOfCookies;
-        }
-        },
-       
-   render :function(){
-       let container=document.getElementById('content-area');
-       let h2 =document.createElement('h2');
-       container.appendChild(h2);
-       h2.textContent=this.location;
-       container.appendChild(h2);
-       let list=document.createElement('ul');
-       container.appendChild(list);
-       for (let i=0;i<time.length;i++){
-        let listItem = document.createElement('li');
-        listItem.textContent  =time[i]+': '+this.hourlySales[i]+' cookies';
-        list.appendChild(listItem);
-       }
-       let listItem = document.createElement('li');
-        listItem.textContent  ='Total: '+this.dailySales+' cookies';
-        list.appendChild(listItem);
-
-
-   },
-}
-   limaBranch.hourlyDailySales();
-   limaBranch.render();
-
-// let time=['6am','7am','8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm','7pm'];
-let tableElement=document.getElementById('table');
-
-function patCookies(branchName, minClintPerHour, maxClintPerHour, avgCookieSale){
-this.branchName=branchName;
-this.minClintPerHour;
-this.maxClintPerHour=maxClintPerHour;
-this.avgCookieSale=avgCookieSale;
-this.clintHourly =[];
-this.coockiesHourly =[];
-this.totalCoockiesPerDay = 0;
-}
-
-patCookies.prototype.calcClintHourly = function(){
-for(let x = 0; x < time.length; x++) {
-    this.calcClintHourly.push(random(this.minClintPerHour,maxClintPerHour));
-}
+Branchs.prototype.render = function() {
+  let rowline = document.createElement('tr');
+  let tableData = document.createElement('td');
+  tableData.textContent = this.name;
+  rowline.appendChild(tableData);
+  for (let x = 0; x < this.averageCookiesPerHour.length; x++) {
+    let tableDataCell = document.createElement('td');
+    tableDataCell.textContent = this.averageCookiesPerHour[x];
+    rowline.appendChild(tableDataCell);
+  };
+  let totalLine = document.createElement('td');
+  totalLine.textContent = this.totalCookiesPerDay;
+  rowline.appendChild(totalLine);
+  salesTable.appendChild(rowline);
 };
+Branchs.prototype.numOfCustomersPerHour = function() {
+  for (let x = 0; x < time.length; x++) {
+    let clintPerHour = Math.ceil(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
+    this.averageCustomersPerHour.push(clintPerHour);
+  }
+};
+Branchs.prototype.cookiesPerCustomer = function() {
+  for (let x = 0; x < time.length; x++) {
+    let cookiesPerHour = Math.ceil(this.averageCustomersPerHour[x] * this.avgCookies);
+    this.averageCookiesPerHour.push(cookiesPerHour);
+    this.totalCookiesPerDay += cookiesPerHour;
+  }
+};
+//Table 
+function headerLine() { 
+  let rowline = document.createElement('tr');
+  let headerElement = document.createElement('th');
+  headerElement.textContent = 'Branchs / Time';
+  salesTable.appendChild(rowline);
+  rowline.appendChild(headerElement);
+  for (let x = 0; x < time.length; x++) {
+    headerElement = document.createElement('th');
+    headerElement.textContent = time[x];
+    rowline.appendChild(headerElement);
+    console.log(headerElement);
+  }
+  headerElement = document.createElement('th');
+  headerElement.textContent = 'Total For Each Br.';
+  rowline.appendChild(headerElement);
+  console.log(salesTable);
+  salesTable.appendChild(rowline);
+};
+function renderBranchs() {
+  for (let x = 0; x < branchLocations.length; x++) {
+    branchLocations[x].render();
+  }
+}
 
-patCookies.prototype.calccookiesHourly = function(){
-    this.calcClintHourly();
-    for( let x = 0; x < time.length; x++){
-        let oneHour = Math.ceil(this.clintHourly[x] * this.avgCookieSale);
-        this.coockiesHourly.push(oneHour);
-        this.totalCoockiesPerDay +=oneHour;
+// Tablefooter
+function footerLine() {
+  let rowline = document.createElement('tr');
+  rowline.textContent = 'Totals';
+  salesTable.appendChild(rowline);
+  let totalOfTotal = 0;
+  for (let x = 0; x < time.length; x++) {
+    let totalPerHour = 0;
+    for (let y = 0; y < branchLocations.length; y++) {
+      totalPerHour = totalPerHour + branchLocations[y].averageCookiesPerHour[x];
+      totalOfTotal += branchLocations[y].averageCookiesPerHour[x];
     }
-};
-
-patCookies.prototype.render = function(){
-    this.calccookiesHourly();
-    let tableRow = document.createElement('tr');
-    let tableDataElement= document.createElement('td');
-    tableDataElement.textContent=this.branchName;
-    tableRow.appendChild(tableDataElement);
     
-    for (let x = 0; x < time.length; x++){
-       tableDataElement = document.createElement('td');
-       tableDataElement.textContenta = this.coockiesHourly[x];
-       tableRow.appendChild(tableDataElement);
-    }
-    let tableHeader = document.createElement('th');
-    tableHeader.textContent = this.totalCoockiesPerDay;
-    tableRow.appendChild(tableHeader);
-    tableElement.appendChild(tableRow);
-};
-// let branchList =[seattle, tokyo, dubai, paris, lima];
-seattle = new patCookies('Seattle', 23 , 65 , 6.3);
-tokyo = new patCookies('Tokyo', 3 , 24 , 1.2);
-dubai = new patCookies('Dubai', 11 , 38 , 3.7);
-paris = new patCookies('Paris', 20 , 38 , 2.3);
-lima = new patCookies('Lima', 2 , 16 , 4.6);
+    let headerElement = document.createElement('td');
+    headerElement.textContent = totalPerHour;
+    rowline.appendChild(headerElement);
+  }
+    let headerElement = document.createElement('td');
+    headerElement.textContent = totalOfTotal;
+    rowline.appendChild(headerElement);
+
+}
+new Branchs('Seattle', 23 , 65 , 6.3);
+new Branchs('Tokyo', 3 , 24 , 1.2);
+new Branchs('Dubai', 11 , 38 , 3.7);
+new Branchs('Paris', 20 , 38 , 2.3);
+new Branchs('Lima', 2 , 16 , 4.6);
+// let branchs =[seattle, tokyo, dubai, paris, lima];
 
 
-function headerLine(){
-    let tableRow = document.createElement('tr');
-    let tableHeader = document.createElement('th');
-    tableHeader.textContent('Branchs');
-    tableRow.appendChild(tableHeader);
+//Event Handler function
+function dataInput(event) {
+  event.preventDefault();
+  console.log('Submit button was clicked');
+//If statement to prevent empty text fields
+  if (!event.target.name.value || !event.target.minCustomers.value || !event.target.maxCustomers.value || !event.target.avgCookies.value) {
+    return alert('Fields cannot be empty!');
+  }
 
-    for (let x = 0; x < time.length; x++ ){
-      tableHeader.document.createElement('th');
-      tableHeader.textContent=time[x];
-      tableRow.appendChild(tableHeader);
-    } 
-    tableHeader = document.createElement('th');
-    tableHeader.textContent ='Branchs Total';
-    tableRow.appendChild(tableHeader);
-    tableElement.appendChild(tableRow);
+  //  event.target.name = null;
+  // event.target.minCustomers = null;
+  // event.target.maxCustomers = null;
+  // event.target.avgCookies = null;
+
+  let name = event.target.name.value;
+  let minCustomers = parseInt(event.target.minCustomers.value);
+  let maxCustomers = parseInt(event.target.maxCustomers.value);
+  let avgCookies = parseFloat(event.target.avgCookies.value);
+
+  // salesTable.textContent = 0;
+  //Code to make the input fields blank after user submits
+
+  // let branchExist = branchThere(branchLocations, name);
+  // let index;
+
+  // function branchThere(n,u) {
+  //   for (let x = 0; x < n.length; x++) {
+  //     if (n[x].name === u) {
+  //       index = x;
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
+
+  // branchThere(branchLocations, name);
+  // console.log(branchThere(branchLocations, name));
+
+  // if (branchExist === true) {
+  //   console.log('did find name');
+  //   branchLocations[index].minCustomers = parseInt(minCustomers);
+  //   branchLocations[index].maxCustomers = parseInt(maxCustomers);
+  //   branchLocations[index].avgCookies = parseFloat(avgCookies);
+  //   branchLocations[index].averageCustomersPerHour = [];
+  //   branchLocations[index].averageCookiesPerHour = [];
+  //   branchLocations[index].totalCookiesPerDay = 0;
+  //   branchLocations[index].numOfCustomersPerHour();
+  //   branchLocations[index].cookiesPerCustomer();
+  // }
+
+  // if (branchExist === false) {
+    let newBranch = new Branchs(name, minCustomers, maxCustomers, avgCookies);
+ 
+  salesTable.innerHTML='';
+  //Re-creating our table with the new user inputs
+  headerLine();
+  renderBranchs();
+  footerLine();
+
+  document.getElementById("salesInput").reset();
 }
 
-function footerLine (){
-    let tableRow = document.createElement('tr'); 
-    let tableHeader = document.createElement('th');
-    tableHeader.textContent('Total Coockies Over The Branches per Hour');
-    tableRow.appendChild(tableHeader);
-    let totalSummation = 0;
-    for (let x = 0; x < time.length; x++);{
-      let totalPerHour = 0;
-      for ( y =0; y < branchList.length; y++);{
-          totalPerHour += branchList[y].coockiesHourly[x];
-          totalSummation +=branchList[y].coockiesHourly[x];
-      }
-      tableHeader=document.createElement('th');
-      tableHeader.textContent = totalPerHour;
-      tableRow.appendChild(tableHeader);
-    }
-    tableHeader = document.createElement('th');
-    tableHeader.textContent = totalSummation;
-    tableRow.appendChild(tableHeader);
-    tableElement.appendChild(tableRow);
-}
-(function renderTable (){
-    headerLine();
-    for ( let x =0; x < branchList.length; x++){
-        branchList.render();
-    }
+
+// makeHeaderRow();
+// renderAllStores();
+// makeFooterRow();
+
+salesInput.addEventListener('submit', dataInput);
+
+headerLine();
+renderBranchs();
 footerLine();
-})();

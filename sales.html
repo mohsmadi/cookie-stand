@@ -7,28 +7,38 @@
     <title>Document</title>
     <link src="styles.css"></link>
 </head>
+<body>
+    
 
-<table id="table"> 
-    <tr>
-        <td>
-        </td>
-    </tr>
-</table>
+<h1>Smadi Cookies Sales For</h1>
+<section class="mainData">
+    
+
+  </section>
+
 
 <body>
-    <header>
-        <main>
-            <h1>SALES</h1>
-            <h2 id='h2'></h2>
-        </main>
-        <div id="content-area">
-        </div>
-    </header>
-    <main>
-        <img src="https://codefellows.github.io/code-201-guide/curriculum/class-06/lab/assets/salmon.png"> </img>
-    </main>
-   <script src="./js/app.js"></script> 
-</body>
+  <form id="salesInput" >
+    <fieldset>
+      <legend> Our Sales 24/7 </legend>
+      <label class="nameInput">Name:
+      <input type="text" name="name" required></label>
+      <label>Min Customers:
+      <input type="text" name="minCustomers" required></label>
+      <label>Max Customers:
+      <input type="text" name="maxCustomers" required></label>
+      <label>Average Sale:
+      <input type="text" name="avgCookies" required></label>
+      <button id="submit">Submit</button>
+    </fieldset>
+
+    
+      <table id="salesTable2">
+      </table>
+ 
+    </form>
+
+    <script src = "js/app.js"> </script>
 
 </html>
 
