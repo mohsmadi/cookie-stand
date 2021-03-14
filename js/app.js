@@ -115,52 +115,20 @@ function dataInput(event) {
     return alert('Fields cannot be empty!');
   }
 
-  //  event.target.name = null;
-  // event.target.minCustomers = null;
-  // event.target.maxCustomers = null;
-  // event.target.avgCookies = null;
+
 
   let name = event.target.name.value;
   let minCustomers = parseInt(event.target.minCustomers.value);
   let maxCustomers = parseInt(event.target.maxCustomers.value);
   let avgCookies = parseFloat(event.target.avgCookies.value);
 
-  // salesTable.textContent = 0;
-  //Code to make the input fields blank after user submits
 
-  // let branchExist = branchThere(branchLocations, name);
-  // let index;
 
-  // function branchThere(n,u) {
-  //   for (let x = 0; x < n.length; x++) {
-  //     if (n[x].name === u) {
-  //       index = x;
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
-
-  // branchThere(branchLocations, name);
-  // console.log(branchThere(branchLocations, name));
-
-  // if (branchExist === true) {
-  //   console.log('did find name');
-  //   branchLocations[index].minCustomers = parseInt(minCustomers);
-  //   branchLocations[index].maxCustomers = parseInt(maxCustomers);
-  //   branchLocations[index].avgCookies = parseFloat(avgCookies);
-  //   branchLocations[index].averageCustomersPerHour = [];
-  //   branchLocations[index].averageCookiesPerHour = [];
-  //   branchLocations[index].totalCookiesPerDay = 0;
-  //   branchLocations[index].numOfCustomersPerHour();
-  //   branchLocations[index].cookiesPerCustomer();
-  // }
-
-  // if (branchExist === false) {
+  
     let newBranch = new Branchs(name, minCustomers, maxCustomers, avgCookies);
  
   salesTable.innerHTML='';
-  //Re-creating our table with the new user inputs
+ 
   headerLine();
   renderBranchs();
   footerLine();
@@ -168,10 +136,6 @@ function dataInput(event) {
   document.getElementById("salesInput").reset();
 }
 
-
-// makeHeaderRow();
-// renderAllStores();
-// makeFooterRow();
 
 salesInput.addEventListener('submit', dataInput);
 
